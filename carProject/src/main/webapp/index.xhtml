@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+		<title> Sample Project</title>
+		<style>
+			.content1 {
+				background-color: #CDCDCD !important;
+				border: solid;
+			}
+			
+			.content2 {
+				background-color: white !important;
+				border: solid;
+				padding: 10px;
+				margin: 10px;
+			}
+			
+			.block1 {
+				
+				width: 580px;
+				float: left;
+			}
+		
+			.button {
+				clear: both;
+			}
+			
+			button.ui-button {
+        		margin-right: .5rem;
+    		}
+
+		</style>
+		
+
+	</h:head>
+	
+	<h:body>
+
+
+		<p:panel id="panel" header="Browser" style="margin-bottom:10px;">
+		
+		<h:form>
+			<p:messages id="msgs" />
+			<p:growl id="growl" showDetail="true" sticky="false" autoUpdate="true" closable="true"/>
+			<div id="selection">
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputText value="Products: " />
+					<p:selectOneMenu id="menu" value="#{cpt.selectedMenu}" >
+						<p:ajax listener="#{cpt.onCarChange}" update="menu name drivetrain date horsepower enginesize comment rate image growl"/>
+						<f:selectItems value="#{cpt.cars}"/>
+					</p:selectOneMenu >
+				</h:panelGrid>
+			</div>
+			
+			
+			<div  class="content1">
+				<div>
+					<h:panelGrid columns="4" cellpadding="5">
+						<h:outputText value="Product Name:" />
+						<p:remoteCommand name = "testName" />
+						<p:inputText id="name" value="#{cpt.selectedCar}" >
+							<!-- <f:validateLength minimum="1" maximum="254" /> -->
+							<p:ajax update="msgProducename growl" event="keyup" />
+						</p:inputText>
+					</h:panelGrid>
+					<p:message for="name" id="msgProducename" style="color:red" />
+				<!--	<p:message for="name" id="msgProducename" display="icon" /> -->
+				</div>
+				
+				<div class="content2">		
+					<div class="block1">
+						<div>
+							<h:panelGrid columns="3" cellpadding="5" style="width: 72%">			
+								<h:outputText value="Drivetrain:" />
+								<p:inputText id="drivetrain" value="#{cpt.selectedDrivetrain}" >
+									<!-- <f:validateLength minimum="1" maximum="254"/> -->
+									<p:ajax update="msgDrivetrain growl" event="keyup"/>
+								</p:inputText>					
+							</h:panelGrid>
+							<p:message for="drivetrain" id="msgDrivetrain" style="color:red" />
+							<!-- <p:message for="drivetrain" id="msgDrivetrain" display="icon" /> -->
+						</div>
+						
+						<div>
+							<h:panelGrid columns="2" cellpadding="5" >
+								<h:outputText value="Manufactured:" />
+								<p:datePicker id="date" value="#{cpt.date}" pattern="MMM dd, yyyy" placeholder="#{cpt.selectedDate}">
+								</p:datePicker>
+							</h:panelGrid>
+						</div>
+							
+						<div>
+							<h:panelGrid columns="2" cellpadding="5" style="width: 64%">
+								<h:outputText value="Horsepower:" />
+								<p:inputText id="horsepower" value="#{cpt.selectedPower}" validatorMessage="Horsepower: Number Input Only">
+								<!--	<f:validateRegex pattern="[0-9]+" /> -->
+									<p:ajax update="msgHorsepower growl" event="keyup"/>
+								</p:inputText>
+							</h:panelGrid>
+							<p:message for="horsepower" id="msgHorsepower" style="color:red" />
+							<!-- <p:message for="horsepower" id="msgHorsepower" display="icon" /> -->
+						</div>
+						
+						<div>
+							<h:panelGrid columns="3" cellpadding="5" style="width: 64%">
+								<p:outputLabel value="Engine Size:" />
+								<p:inputText id="enginesize" value="#{cpt.selectedEngine}" validatorMessage="Engine Size: Number Input Only">
+							<!--		<f:validateRegex pattern="[0-9]+" /> -->
+							<!--		<f:validator validatorId="carProject.EngineSizeValidate" /> -->
+									<p:ajax update="msgEngine growl" event="keyup"/>
+								</p:inputText>
+							</h:panelGrid>
+							<p:message for="enginesize" id="msgEngine" style="color:red" />
+							<!-- <p:message for="enginesize" id="msgEngine" display="icon" /> -->
+						</div>
+						
+						<div>
+							<h:panelGrid columns="2" cellpadding="5" style="width: 116%">
+								<h:outputText value="Comments" />
+								<p:inputTextarea id="comment" value="#{cpt.selectedComment}" rows="4" cols="50" maxlength="200" autoResize="false" />
+								
+							</h:panelGrid>
+						</div>
+					</div>
+					
+					<div class="block2" align="center">
+						<p:graphicImage id="image" value="Image/#{cpt.selectedImage}" width="400" height="250" />	
+						<h:panelGrid columns="5" cellpadding="5">
+	
+							<h:outputText value="Color" />
+							<p:colorPicker value="#{cp.popupColor}" />
+							
+							<h:outputText value="Rating |" />
+							<p:rating id="rate" value="#{cpt.selectedRating}" />
+							
+						</h:panelGrid>
+					</div>
+					
+					<div class="button" align="center">
+						<p:separator />
+						    <p:commandButton process="@parent:@parent:@parent" update="@form" value="Validate" />
+    						<p:commandButton type="button" value="Reset" >
+								<p:ajax id="reset" listener="#{cpt.resetCar}" update="name drivetrain date horsepower enginesize comment rate image"/>
+							</p:commandButton> 
+					</div>
+					
+				</div>
+			</div>
+		</h:form>
+		</p:panel>
+	</h:body>
+</html>

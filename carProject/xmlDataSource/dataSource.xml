@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cars>
+ 	<car>
+  		<product_name>Jeep Wrangler</product_name>
+  		<drivetrain>AWD</drivetrain>
+  		<manufactured>03-01-2022</manufactured>
+  		<horsepower></horsepower>
+  		<engine_size>1995</engine_size>
+  		<comments></comments>
+  		<colour>Green</colour>
+  		<rating>5</rating>
+  		<image_name>jeep.png</image_name>
+ 	</car>
+
+  	<car>
+  		<product_name>Chevrolet Camaro</product_name>
+  		<drivetrain>RWD</drivetrain>
+  		<manufactured>01-01-2021</manufactured>
+  		<horsepower>311</horsepower>
+  		<engine_size>3564</engine_size>
+  		<comments>Some comments go here</comments>
+  		<colour>Yellow</colour>
+  		<rating>5</rating>
+  		<image_name>camaro.png</image_name>
+ 	</car>
+
+ 	<car>
+  		<product_name>Bugatti Chiron</product_name>
+  		<drivetrain>AWD</drivetrain>
+ 		 <manufactured>06-01-2021</manufactured>
+ 		 <horsepower>1480</horsepower>
+ 		 <engine_size>7993</engine_size>
+ 		 <comments>Most Expensive</comments>
+ 		 <colour>Blue</colour>
+ 		 <rating>5</rating>
+ 		 <image_name>bugatti.png</image_name>
+ 	</car>
+</cars>
